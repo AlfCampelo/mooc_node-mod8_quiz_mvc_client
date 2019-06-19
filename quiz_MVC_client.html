@@ -111,7 +111,7 @@ const updateController = (id) => {
 
 const newController = () => {
     // ..... introducir código
-    
+    $('#main').html(quizForm('New Quiz', 'create', 0, '', ''));
 };
 
 const createController = () => {
@@ -135,8 +135,9 @@ const eventsController = ()=> {
   $(document).on('click','.check',  (e)=> checkController(Number($(e.target).attr("quizid"))));
   $(document).on('click','.edit',   (e)=> editController(Number($(e.target).attr("quizid"))));
   $(document).on('click','.update', (e)=> updateController(Number($(e.target).attr("quizid"))));
-
-    // ..... añadir manejadores de eventos new, create, delete y reset
+  // ..... añadir manejadores de eventos new, create, delete y reset
+  $(document).on('click', '.new',   ()=> newController()) ;
+  //$(document).on('click', '.create',()=> createController());
 }
 
 
