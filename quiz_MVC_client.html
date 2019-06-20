@@ -115,11 +115,26 @@ const newController = () => {
 };
 
 const createController = () => {
-    // ..... introducir código
+    // Obtiene contenido localStorage
+    let quizzes = JSON.parse(localStorage.quizzes);
+    // Comprueba que los campos no esten vacíos
+    if(($('#question').val()) && ($('#answer').val()) !== ''){
+    	// Añade al final del array el nuevo quiz
+    	quizzes.push({
+	    	question: $('#question').val(),
+	    	answer: $('#answer').val()
+    	});
+    	// Actualiza localStorage
+    	localStorage.quizzes = JSON.stringify(quizzes);
+    }else{
+    	window.alert('NO es posible crear quiz con campos vacíos.')
+    }
+    indexController();
 };
 
 const deleteController = (id) => {
     // ..... introducir código
+   
 };
 
 const resetController = (id) => {
@@ -137,7 +152,8 @@ const eventsController = ()=> {
   $(document).on('click','.update', (e)=> updateController(Number($(e.target).attr("quizid"))));
   // ..... añadir manejadores de eventos new, create, delete y reset
   $(document).on('click', '.new',   ()=> newController()) ;
-  //$(document).on('click', '.create',()=> createController());
+  $(document).on('click', '.create',()=> createController());
+  $(document).on('click', '.delete',(e)=> deleteController(Number($(e.target).attr("quizid"))));
 }
 
 
