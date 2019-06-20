@@ -133,8 +133,15 @@ const createController = () => {
 };
 
 const deleteController = (id) => {
-    // ..... introducir código
-   
+	// Obtiene contenido localStorage
+    let quizzes = JSON.parse(localStorage.quizzes);
+    if(window.confirm(`Desea eliminar el quiz`)){
+    	// Elimina el quiz
+    	quizzes.splice(id, 1);
+    	// Actualiza localStorage
+    	localStorage.quizzes = JSON.stringify(quizzes);
+    }
+    indexController();
 };
 
 const resetController = (id) => {
